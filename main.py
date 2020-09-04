@@ -14,31 +14,6 @@ from keyboard import mouse
 import socket
 import ctypes
 import webbrowser
-# Text segmentation 
-import cv2
-import numpy as np
-import pyscreenshot as ImageGrab
-
-# grab fullscreen
-
-
-image = cv2.imread(r'C:\Users\Vinic\Desktop\Capturar.png')
-
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-sharpen_kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
-sharpen = cv2.filter2D(gray, -1, sharpen_kernel)
-thresh = cv2.threshold(sharpen, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
-
-kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
-close = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=1)
-result = 255 - close
-
-cv2.imshow('sharpen', sharpen)
-cv2.imshow('thresh', thresh)
-cv2.imshow('close', close)
-cv2.imshow('result', result)
-cv2.waitKey()
-
 
 user32 = ctypes.windll.user32
 height = user32.GetSystemMetrics(1)
@@ -66,7 +41,6 @@ elif height == 1440:
     firstHeight = 0.15
     secondWidth = 0.30
     secondHeight = 0.30
-
 
 def get_ip_address():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
